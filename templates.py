@@ -1,5 +1,6 @@
 from experiment import *
 
+NUM_GPUS = 1
 
 def ddpm():
     """
@@ -63,7 +64,7 @@ def ffhq64_ddpm():
     conf.data_name = 'ffhqlmdb256'
     conf.warmup = 0
     conf.total_samples = 72_000_000
-    conf.scale_up_gpus(4)
+    conf.scale_up_gpus(NUM_GPUS)
     return conf
 
 
@@ -76,7 +77,7 @@ def ffhq64_autoenc():
     conf.net_enc_channel_mult = (1, 2, 4, 8, 8)
     conf.eval_every_samples = 1_000_000
     conf.eval_ema_every_samples = 1_000_000
-    conf.scale_up_gpus(4)
+    conf.scale_up_gpus(NUM_GPUS)
     conf.make_model_conf()
     return conf
 
@@ -115,7 +116,7 @@ def ffhq128_ddpm():
     conf.net_ch_mult = (1, 1, 2, 3, 4)
     conf.eval_every_samples = 1_000_000
     conf.eval_ema_every_samples = 1_000_000
-    conf.scale_up_gpus(4)
+    conf.scale_up_gpus(NUM_GPUS)
     conf.eval_ema_every_samples = 10_000_000
     conf.eval_every_samples = 10_000_000
     conf.make_model_conf()
@@ -125,7 +126,7 @@ def ffhq128_ddpm():
 def ffhq128_autoenc_base():
     conf = autoenc_base()
     conf.data_name = 'ffhqlmdb256'
-    conf.scale_up_gpus(4)
+    conf.scale_up_gpus(NUM_GPUS)
     conf.img_size = 128
     conf.net_ch = 128
     # final resolution = 8x8
